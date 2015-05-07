@@ -2,12 +2,13 @@ import java.util.ArrayList;
 
 import processing.core.PApplet;
 
+//  This is a different comment
 public class Main extends PApplet {
 	Point circle1center, circle2center;
 	Point peg1, peg2;
 	double circleRadius = 40;
 	double pegRadius = 2;
-	
+
 	Point penLocationxy;
 	Point penLocationab;
 
@@ -21,12 +22,12 @@ public class Main extends PApplet {
 		circle2center = new Point(width-150, 100);
 		peg1 = new Point(50, 150);
 		peg2 = new Point(width-50, 150);
-	
+
 		d = peg2.x - peg1.x;
-		
+
 		penLocationxy = new Point(300, 300);
 		penLocationab = this.xyToab(penLocationxy);
-	
+
 		drawing = new ArrayList<Point>();
 		commands = new ArrayList<Command>();
 		commands.add(new Command(0, 3, 100));
@@ -49,37 +50,37 @@ public class Main extends PApplet {
 				commands.remove(0);
 				return;
 			}
-			
+
 			command.run();
-			
+
 			//   string released = x rpm * ( 2 pi r / 1 rot) * (1 min / 60 sec) * ( 1 sec / 10 (1/10ths of sec) )
 			double m1StringDiff = command.motor1Speed*(2*Math.PI*circleRadius)/(600.0);
 			double m2StringDiff = command.motor2Speed*(2*Math.PI*circleRadius)/(600.0);
-			
+
 			System.out.println("diff a: " + m1StringDiff + " diff b: " + m2StringDiff);
-			
+
 			penLocationab.x += m1StringDiff;
 			penLocationab.y += m2StringDiff;
-			
+
 			penLocationxy = this.abToxy(penLocationab);
 			drawing.add(penLocationxy);
 		}
 	}
-	
+
 	public Point abToxy(Point abpoint) {
 		double a = abpoint.x;
 		double b = abpoint.y;
-		
+
 		double x = (double)(a*a+d*d-b*b)/(2*d);
 		double y = Math.sqrt(a*a - x*x);
-		
+
 		return new Point(x, y);
 	}
-	
+
 	public Point xyToab(Point xypoint) {
 		double x = xypoint.x;
 		double y = xypoint.y;
-		
+
 		double a = (Math.sqrt(x*x + y*y));
 		double b = (Math.sqrt(y*y + (d-x)*(d-x)));
 		return new Point(a, b);
@@ -93,7 +94,7 @@ public class Main extends PApplet {
 			point((float)p.x, (float)p.y);
 		}
 		strokeWeight(1);
-		
+
 		// draw circles
 		ellipse((float)circle1center.x, (float)circle1center.y, (float)(circleRadius * 2),
 				(float)(circleRadius * 2));
