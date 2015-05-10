@@ -16,6 +16,7 @@ public class Main extends PApplet {
 	ArrayList<Command> commands;
 	double d;
 
+	// This is a comment
 	public void setup() {
 		size(600, 600);
 		circle1center = new Point(150, 100);
