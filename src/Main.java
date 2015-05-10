@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 import processing.core.PApplet;
 
-//  This is a different comment
+// This is a comment
 public class Main extends PApplet {
 	Point circle1center, circle2center;
 	Point peg1, peg2;
