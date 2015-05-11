@@ -37,6 +37,7 @@ public class Main extends PApplet {
 		commands.add(new Command(-3, -1, 60));
 	}
 
+
 	// Person B comment
 	public void draw() {
 		background(255);
